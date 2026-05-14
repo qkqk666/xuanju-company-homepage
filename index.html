@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>玄驹科技 - AI驱动的职场认知教练</title>
+  <meta name="description" content="玄驹科技，惠州本地AI资源服务商。AI六维思维测评、定制化AI认知赋能、精准非流水线岗位匹配。">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700;900&family=Noto+Sans+SC:wght@200;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #08090C;
+      color: #FFFFFF;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* no-js 回退：保证无 JS 时内容可见 */
+    body.no-js * { opacity: 1 !important; transform: none !important; }
+
+    /* ===== 通用 Section 容器 ===== */
+    .hero, .about, .service, .enterprise, .faq, .cta, .philosophy {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 2rem;
+    }
+
+    /* ===== Hero ===== */
+    .hero { background: #08090C; }
+    .hero__content { text-align: center; max-width: 900px; position: relative; z-index: 1; }
+
+    .hero__title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .animate-text {
+      position: relative;
+      display: inline-block;
+      color: rgba(255,255,255,0.15);
+      overflow: hidden;
+    }
+
+    .animate-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #FFFFFF 0%, rgba(255,255,255,0.9) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.8rem);
+      font-weight: 200;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero__tags {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .tag {
+      padding: 0.6rem 1.5rem;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ===== About ===== */
+    .about { position: relative; overflow: hidden; }
+    .about__content { max-width: 1100px; width: 100%; text-align: center; position: relative; z-index: 1; }
+
+    .about__title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .about__cards {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .about-card {
+      width: 240px;
+      padding: 2rem;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+
+    .card-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .about-card h3 { font-weight: 700; margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .about-card p { opacity: 0.7; font-size: 0.95rem; line-height: 1.5; }
+
+    /* ===== Service ===== */
+    .service { flex-direction: column; gap: 4rem; position: relative; overflow: hidden; }
+
+    .service__titles {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      overflow: hidden;
+    }
+
+    .service__title {
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      opacity: 0;
+    }
+
+    .service__title--top { transform: translateX(-100%); }
+    .service__title--middle { transform: translateX(100%); }
+    .service__title--bottom { transform: translateX(-100%); }
+
+    .service__timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .timeline-node {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    .node-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .node-dot.active {
+      background: #00D4AA;
+      border-color: #00D4AA;
+      box-shadow: 0 0 12px rgba(0,212,170,0.3);
+    }
+
+    .node-card { background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 12px; flex: 1; }
+    .node-card h4 { font-weight: 700; margin-bottom: 0.3rem; }
+    .node-card p { opacity: 0.7; font-size: 0.9rem; line-height: 1.5; }
+
+    /* ===== Enterprise ===== */
+    .enterprise { flex-direction: column; gap: 3rem; }
+    .enterprise__content { max-width: 1100px; width: 100%; text-align: center; }
+    .enterprise__title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .enterprise__visual {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      margin: 2rem 0;
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .enterprise__grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 4px;
+      padding: 2rem;
+      width: 100%;
+      height: 100%;
+    }
+    .grid-cell {
+      background: rgba(255,255,255,0.03);
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    .grid-cell.highlight {
+      background: rgba(0,212,170,0.15);
+    }
+    .enterprise__beam {
+      position: absolute;
+      top: 0;
+      left: -100px;
+      width: 100px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,212,170,0.08), transparent);
+      pointer-events: none;
+    }
+    .enterprise__panel { text-align: left; max-width: 600px; margin: 0 auto; }
+    .enterprise__panel h4 { font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem; }
+    .enterprise__panel ul { list-style: none; padding: 0; }
+    .enterprise__panel li { padding: 0.5rem 0; opacity: 0.8; font-size: 0.95rem; }
+    .enterprise__panel li::before { content: "+ "; color: #00D4AA; font-weight: 700; }
+    .cooperation-mode { margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.6; font-style: italic; }
+
+    /* ===== FAQ ===== */
+    .faq { flex-direction: column; }
+    .faq__content { max-width: 900px; width: 100%; text-align: center; }
+    .faq__title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 200;
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+    .faq__bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .faq-bubble {
+      width: 280px;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .question { font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem; }
+    .answer { opacity: 0.7; font-size: 0.9rem; line-height: 1.5; }
+
+    /* ===== Philosophy ===== */
+    .philosophy { position: relative; overflow: hidden; }
+    .philosophy__content { max-width: 1000px; width: 100%; position: relative; z-index: 1; }
+
+    .philosophy__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .philosophy__intro {
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.8;
+      opacity: 0.7;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    /* 四个时期卡片 */
+    .philosophy__eras {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .era-card {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .era-card--active {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .era-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .era-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .era-subtitle {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .era-desc {
+      font-size: 0.9rem;
+      opacity: 0.5;
+      line-height: 1.5;
+    }
+
+    .era-card:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .era-card:hover .era-title {
+      color: #00D4AA;
+    }
+
+    /* 核心理念 */
+    .philosophy__core {
+      margin-bottom: 5rem;
+    }
+
+    .core-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .core-comparison {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .core-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .core-label {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .core-item p {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    .core-divider {
+      width: 1px;
+      height: 80px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* 终极命题 */
+    .philosophy__ultimate {
+      margin-bottom: 5rem;
+    }
+
+    .ultimate-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .ultimate-quote {
+      font-size: 1.4rem;
+      font-weight: 200;
+      font-style: italic;
+      text-align: center;
+      opacity: 0.8;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      border-left: none;
+      padding: 0;
+    }
+
+    .ultimate-quote cite {
+      display: block;
+      font-size: 0.9rem;
+      font-style: normal;
+      font-weight: 400;
+      opacity: 0.4;
+      margin-top: 0.8rem;
+    }
+
+    .ultimate-freedoms {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .freedom-item {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+    }
+
+    .freedom-item:hover {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .freedom-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .freedom-item h4 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .freedom-item p {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      line-height: 1.5;
+    }
+
+    /* Philosophy CTA */
+    .philosophy__cta {
+      text-align: center;
+    }
+
+    .philosophy__cta .cta-text {
+      font-size: 1.1rem;
+      opacity: 0.7;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* ===== CTA ===== */
+    .cta { flex-direction: column; text-align: center; }
+
+    .cta__title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .cta__buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .cta-primary {
+      padding: 1rem 3rem;
+      background: #FFFFFF;
+      color: #08090C;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-primary:hover {
+      box-shadow: 0 0 40px rgba(0,212,170,0.15);
+      transform: scale(1.02);
+    }
+
+    .cta-secondary {
+      padding: 1rem 3rem;
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-secondary:hover {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .cta__contact {
+      margin-top: 3rem;
+      opacity: 0.3;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      margin-top: 4rem;
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer__logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .footer__name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    .footer__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      opacity: 0.4;
+    }
+
+    .footer__qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer__qr-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      opacity: 0.9;
+      background: #fff;
+      padding: 4px;
+    }
+
+    .footer__qr-label {
+      font-size: 0.7rem;
+      opacity: 0.4;
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .footer__brand { flex-direction: column; }
+      .footer__qr-img { width: 64px; height: 64px; }
+    }
+
+    /* ===== Color Blobs ===== */
+    .color-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+      will-change: transform;
+    }
+
+    .hero-blob {
+      width: 600px;
+      height: 600px;
+      background: #00D4AA;
+      top: -200px;
+      left: -150px;
+    }
+
+    .about-blob {
+      width: 500px;
+      height: 500px;
+      background: #A277FF;
+      top: 20%;
+      right: -200px;
+    }
+
+    .service-blob {
+      width: 550px;
+      height: 550px;
+      background: #FF6B6B;
+      bottom: -150px;
+      left: -180px;
+    }
+
+    .philosophy-blob {
+      width: 480px;
+      height: 480px;
+      background: #FFD93D;
+      top: -100px;
+      right: -150px;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .hero__title { font-size: 2.5rem; }
+      .about__cards { flex-direction: column; align-items: center; }
+      .about-card { width: 100%; max-width: 320px; }
+      .faq__bubbles { flex-direction: column; align-items: center; }
+      .faq-bubble { width: 100%; max-width: 360px; }
+      .enterprise__grid { grid-template-columns: repeat(4, 1fr); }
+      .service__titles { overflow: hidden; }
+      .philosophy__eras { grid-template-columns: 1fr 1fr; }
+      .core-comparison { flex-direction: column; gap: 1.5rem; }
+      .core-divider { width: 80px; height: 1px; }
+      .ultimate-freedoms { grid-template-columns: 1fr; }
+      .cta__buttons { flex-direction: column; align-items: center; }
+    }
+
+    /* ===== Hero 视频背景 & 粒子系统 ===== */
+    .hero-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.25) contrast(1.3) saturate(0.6);
+      transform: scale(1.08); /* 防止亮度降低后边缘露出背景 */
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 9, 12, 0.8) 0%,
+        rgba(8, 9, 12, 0.5) 30%,
+        rgba(8, 9, 12, 0.5) 70%,
+        rgba(8, 9, 12, 0.9) 100%
+      );
+      z-index: 1;
+    }
+
+    #hero-particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+
+  <!-- Three.js：粒子系统依赖 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="no-js">
+
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="color-blob hero-blob" data-speed="0.6"></div>
+
+    <!-- 视频背景：降低亮度放在底层 -->
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline preload="auto" poster="">
+        <source src="assets/hero-bg.mp4" type="video/mp4">
+        <!-- 备用格式 -->
+        <source src="assets/hero-bg.webm" type="video/webm">
+      </video>
+      <!-- 深色遮罩：确保文字可读性 -->
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Three.js 粒子系统：叠加在视频上层，与鼠标互动 -->
+    <canvas id="hero-particle-canvas"></canvas>
+
+    <div class="hero__content">
+      <h1 class="hero__title">AI驱动的<br>职场认知教练</h1>
+      <p class="hero__subtitle">AI六维思维测评 | 定制化AI认知赋能 | 绝不输送流水线</p>
+      <div class="hero__tags">
+        <span class="tag">惠州本地AI资源服务商</span>
+        <span class="tag">全程零费用</span>
+        <span class="tag">专注非流水线岗位精准匹配</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. About -->
+  <section class="about">
+    <div class="color-blob about-blob" data-speed="0.8"></div>
+    <div class="about__content">
+      <h2 class="about__title animate-text" data-text="为什么选择玄驹？">为什么选择玄驹？</h2>
+      <div class="about__cards">
+        <div class="about-card" id="card-1">
+          <span class="card-number">01</span>
+          <h3>AI重构匹配逻辑</h3>
+          <p>基于天赋实现个性化赋能</p>
+        </div>
+        <div class="about-card" id="card-2">
+          <span class="card-number">02</span>
+          <h3>求职者零费用</h3>
+          <p>仅向合作企业收取服务费</p>
+        </div>
+        <div class="about-card" id="card-3">
+          <span class="card-number">03</span>
+          <h3>拒绝流水线输送</h3>
+          <p>只做精准岗位匹配</p>
+        </div>
+        <div class="about-card" id="card-4">
+          <span class="card-number">04</span>
+          <h3>不止于就业</h3>
+          <p>关注长期职业发展</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Service -->
+  <section class="service">
+    <div class="color-blob service-blob" data-speed="0.5"></div>
+    <div class="service__titles">
+      <h2 class="service__title service__title--top">14天极速赋能计划</h2>
+      <h2 class="service__title service__title--middle">AI六维测评 · 定制赋能 · 精准匹配</h2>
+      <h2 class="service__title service__title--bottom">入职跟进 · 长期职业发展</h2>
+    </div>
+    <div class="service__timeline">
+      <div class="timeline-node" id="node-1">
+        <div class="node-dot"></div>
+        <div class="node-card">
+          <h4>AI六维思维测评</h4>
+          <p>基于认知心理学与大模型技术，AI分析专属天赋画像</p>
+        </div>
+      </div>
+      <div class="timeline-node" id="node-2">
+        <div class="node-dot"></div>
+        <div class="node-card">
+          <h4>定制化AI认知赋能</h4>
+          <p>AI生成专属14天学习计划，双轨培训</p>
+        </div>
+      </div>
+      <div class="timeline-node" id="node-3">
+        <div class="node-dot"></div>
+        <div class="node-card">
+          <h4>AI精准岗位匹配</h4>
+          <p>智能匹配惠州本地非流水线岗位</p>
+        </div>
+      </div>
+      <div class="timeline-node" id="node-4">
+        <div class="node-dot"></div>
+        <div class="node-card">
+          <h4>入职跟进服务</h4>
+          <p>入职后1个月跟踪回访，协助解决职场问题</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Enterprise -->
+  <section class="enterprise">
+    <div class="enterprise__content">
+      <h2 class="enterprise__title animate-text" data-text="企业AI精准招人解决方案">企业AI精准招人解决方案</h2>
+      <div class="enterprise__visual">
+        <div class="enterprise__grid" id="enterprise-grid"></div>
+        <div class="enterprise__beam" id="enterprise-beam"></div>
+      </div>
+      <div class="enterprise__panel">
+        <h4>核心优势</h4>
+        <ul>
+          <li>AI先测评后推荐，降低筛选成本</li>
+          <li>7天极速到岗</li>
+          <li>30天试用期保障，不合适免费替换</li>
+        </ul>
+        <p class="cooperation-mode">合作模式：按效果付费，入职满30天再收费</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ -->
+  <section class="faq">
+    <div class="faq__content">
+      <h2 class="faq__title">每个人的天赋，<br>都值得被看见</h2>
+      <div class="faq__bubbles">
+        <div class="faq-bubble" id="faq-1">
+          <p class="question">真的全程免费吗？</p>
+          <p class="answer">对求职者完全免费，仅向合作企业收取服务费。</p>
+        </div>
+        <div class="faq-bubble" id="faq-2">
+          <p class="question">AI测评准确性如何？</p>
+          <p class="answer">基于认知心理学与大模型技术，经大量验证，准确性值得信赖。</p>
+        </div>
+        <div class="faq-bubble" id="faq-3">
+          <p class="question">14天赋能能达到什么效果？</p>
+          <p class="answer">让求职者具备目标岗位的核心胜任力，并建立清晰的自我认知。</p>
+        </div>
+        <div class="faq-bubble" id="faq-4">
+          <p class="question">推荐什么类型的岗位？</p>
+          <p class="answer">专注惠州本地非流水线岗位：技术类、管理类、创意类等。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.5. Philosophy / 生产力解放 -->
+  <section class="philosophy">
+    <div class="color-blob philosophy-blob" data-speed="0.7"></div>
+    <div class="philosophy__content">
+
+      <h2 class="philosophy__title animate-text" data-text="生产力解放：人类文明跃迁的永恒引擎">
+        生产力解放：人类文明跃迁的永恒引擎
+      </h2>
+
+      <p class="philosophy__intro">
+        每一次生产力工具的革命性突破，都不仅是技术的迭代，更是人类文明跃迁的壮阔史诗。
+        AI与数字技术深度融合的今天，我们正站在又一次生产力解放的历史节点上——这一次，解放的不仅是机器的力，更是人的创造力。
+      </p>
+
+      <!-- 四个时期卡片 -->
+      <div class="philosophy__eras">
+        <div class="era-card glass-card" id="era-1">
+          <span class="era-number">01</span>
+          <h3 class="era-title">农耕时代</h3>
+          <p class="era-subtitle">从体力桎梏到定居文明</p>
+          <p class="era-desc">铁器与牛耕的普及，让"定居文明"与"社会分工"成为可能，催生了城邦、文字与早期科学。</p>
+        </div>
+        <div class="era-card glass-card" id="era-2">
+          <span class="era-number">02</span>
+          <h3 class="era-title">工业革命</h3>
+          <p class="era-subtitle">从手工场到全球贸易</p>
+          <p class="era-desc">蒸汽机与纺织机瓦解了工场手工业，工厂制度、铁路网络、全球贸易随之而来。</p>
+        </div>
+        <div class="era-card glass-card" id="era-3">
+          <span class="era-number">03</span>
+          <h3 class="era-title">电气时代</h3>
+          <p class="era-subtitle">从规模化到城市化</p>
+          <p class="era-desc">电力与内燃机让生产效率再上台阶，摩天大楼、汽车王国、大众传媒重塑了生活。</p>
+        </div>
+        <div class="era-card glass-card era-card--active" id="era-4">
+          <span class="era-number">04</span>
+          <h3 class="era-title">AI时代</h3>
+          <p class="era-subtitle">从解放机器到解放人</p>
+          <p class="era-desc">这一次，解放的不仅是机器的力，更是人的创造力、决策力与价值洞察力。</p>
+        </div>
+      </div>
+
+      <!-- 核心理念 -->
+      <div class="philosophy__core">
+        <h3 class="core-title">AI时代的生产力革命：从"解放机器"到"解放人"</h3>
+        <div class="core-comparison">
+          <div class="core-item">
+            <span class="core-label">工业时代</span>
+            <p>一个人的价值，在于"熟练操作机器的重复劳动"</p>
+          </div>
+          <div class="core-divider"></div>
+          <div class="core-item">
+            <span class="core-label">AI时代</span>
+            <p>一个人的价值，在于"驾驭智能工具的创造性劳动"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 终极命题 -->
+      <div class="philosophy__ultimate">
+        <h3 class="ultimate-title">生产力解放的终极命题</h3>
+        <blockquote class="ultimate-quote">
+          "生产力的高度发展，是人的自由全面发展的物质前提。"
+          <cite>—— 马克思</cite>
+        </blockquote>
+        <div class="ultimate-freedoms">
+          <div class="freedom-item">
+            <span class="freedom-icon">⏳</span>
+            <h4>时间的自由</h4>
+            <p>不再被重复性劳动消耗8小时，在创作、学习、生活中找到平衡</p>
+          </div>
+          <div class="freedom-item">
+            <span class="freedom-icon">🌐</span>
+            <h4>空间的自由</h4>
+            <p>不必挤在CBD的写字楼，在任何有网络的地方连接全球资源与机会</p>
+          </div>
+          <div class="freedom-item">
+            <span class="freedom-icon">🔄</span>
+            <h4>岗位的自由</h4>
+            <p>不再被"一个岗位定义一生"，根据兴趣与市场不断迭代能力与价值</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部行动号召 -->
+      <div class="philosophy__cta">
+        <p class="cta-text">你不必是技术专家，只要你愿意拥抱AI工具，就能成为这场生产力解放运动的参与者。</p>
+        <button class="cta-primary" id="philosophy-cta">开启你的天赋匹配之旅</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. CTA + Footer -->
+  <section class="cta">
+    <h2 class="cta__title animate-text" data-text="准备好开启你的天赋之旅了吗？">准备好开启你的天赋之旅了吗？</h2>
+    <div class="cta__buttons">
+      <button class="cta-primary" id="start-btn">立即开始测评</button>
+      <button class="cta-secondary" id="contact-btn">企业合作咨询</button>
+    </div>
+    <p class="cta__contact">联系我们：xuanju@coze.email | 粤ICP备号</p>
+    <div class="footer">
+      <div class="footer__brand">
+        <img src="assets/logo-raw.jpg" alt="玄驹科技 Logo" class="footer__logo" id="footer-logo">
+        <span class="footer__name">惠州玄驹信息有限公司</span>
+      </div>
+      <div class="footer__info">
+        <span>xuanju@coze.email</span>
+        <span>粤ICP备号</span>
+      </div>
+      <div class="footer__qr">
+        <img src="assets/wechat-qr-code.png" alt="企业微信二维码" class="footer__qr-img" id="footer-qr">
+        <span class="footer__qr-label">扫码添加</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GSAP 动画库（unpkg CDN） -->
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- Lenis 平滑滚动（unpkg CDN） -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <script>
+    /* ========================================
+       玄驹科技品牌主页 - 动画逻辑
+       ======================================== */
+
+    // 移除 no-js 类，启用动画样式
+    document.body.classList.remove('no-js');
+
+    // 色块漂移动画
+    function initColorBlobs() {
+      var blobs = document.querySelectorAll('.color-blob');
+      blobs.forEach(function(blob) {
+        var speed = parseFloat(blob.getAttribute('data-speed')) || 0.6;
+        ScrollTrigger.create({
+          trigger: blob.parentElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: function(self) {
+            var progress = self.progress;
+            var yOffset = (progress - 0.5) * 200 * speed;
+            gsap.to(blob, {
+              y: yOffset,
+              duration: 0.5,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+            // 色块接近视口边缘时降低透明度
+            var fadeZone = 0.15;
+            var opacity = 0.12;
+            if (progress < fadeZone) {
+              opacity = 0.12 * (progress / fadeZone);
+            } else if (progress > 1 - fadeZone) {
+              opacity = 0.12 * ((1 - progress) / fadeZone);
+            }
+            gsap.to(blob, {
+              opacity: opacity,
+              duration: 0.3,
+              overwrite: 'auto',
+            });
+          },
+        });
+      });
+    }
+
+    // Three.js 粒子系统：蚂蚁群体智能运动 + 鼠标互动
+    function initParticleSystem() {
+      var canvas = document.getElementById('hero-particle-canvas');
+      if (!canvas || typeof THREE === 'undefined') { console.warn('Three.js 未加载或 canvas 不存在'); return; }
+
+      // 场景 / 相机 / 渲染器
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 50;
+
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      // ===== 粒子数据 =====
+      var PARTICLE_COUNT = 120;  // 减少数量，更像蚂蚁队伍
+      var positions  = new Float32Array(PARTICLE_COUNT * 3);
+      var velocities = new Float32Array(PARTICLE_COUNT * 3);
+      var colors     = new Float32Array(PARTICLE_COUNT * 3);
+
+      // 品牌色（量子青 / 光谱紫 / 跃动珊瑚 / 流光金）
+      var brandColors = [
+        new THREE.Color(0x00D4AA),
+        new THREE.Color(0xA277FF),
+        new THREE.Color(0xFF6B6B),
+        new THREE.Color(0xFFD93D),
+      ];
+
+      for (var i = 0; i < PARTICLE_COUNT; i++) {
+        var i3 = i * 3;
+        positions[i3]     = (Math.random() - 0.5) * 100;
+        positions[i3 + 1] = (Math.random() - 0.5) * 60;
+        positions[i3 + 2] = (Math.random() - 0.5) * 30;
+
+        velocities[i3]     = (Math.random() - 0.5) * 0.15;
+        velocities[i3 + 1] = (Math.random() - 0.5) * 0.15;
+        velocities[i3 + 2] = (Math.random() - 0.5) * 0.05;
+
+        var c = brandColors[Math.floor(Math.random() * brandColors.length)];
+        colors[i3]     = c.r;
+        colors[i3 + 1] = c.g;
+        colors[i3 + 2] = c.b;
+      }
+
+      var geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+      geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+
+      var material = new THREE.PointsMaterial({
+        size: 1.0,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.7,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+
+      var particleMesh = new THREE.Points(geometry, material);
+      scene.add(particleMesh);
+
+      // ===== 鼠标位置（归一化设备坐标）=====
+      var mouse = { x: 0, y: 0 };
+      window.addEventListener('mousemove', function(e) {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      // ===== Boid 参数（蚂蚁行为：分散、缓慢、有目的）=====
+      var SEPARATION_DIST = 15;  // 蚂蚁间保持更大距离
+      var ALIGNMENT_DIST  = 12;
+      var COHESION_DIST   = 20;  // 聚合范围更大但力度更小
+      var MAX_SPEED       = 0.18;  // 最大速度降低，更像蚂蚁爬行
+      var MOUSE_RADIUS    = 20;
+      var MOUSE_FORCE     = 0.03;  // 鼠标吸引力减弱
+
+      // ===== 动画循环 =====
+      function animate() {
+        requestAnimationFrame(animate);
+
+        var pos = geometry.attributes.position.array;
+        var vel = geometry.attributes.velocity.array;
+        var n   = PARTICLE_COUNT;
+
+        for (var i = 0; i < n; i++) {
+          var i3 = i * 3;
+
+          // --- 聚合（Cohesion）---
+          var cx = 0, cy = 0, cz = 0, neighC = 0;
+          for (var j = 0; j < n; j++) {
+            if (j === i) continue;
+            var j3 = j * 3;
+            var dx = pos[j3] - pos[i3];
+            var dy = pos[j3 + 1] - pos[i3 + 1];
+            var dz = pos[j3 + 2] - pos[i3 + 2];
+            var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (dist < COHESION_DIST) { cx += pos[j3]; cy += pos[j3 + 1]; cz += pos[j3 + 2]; neighC++; }
+          }
+          if (neighC > 0) {
+            cx /= neighC; cy /= neighC; cz /= neighC;
+            vel[i3]     += (cx - pos[i3]) * 0.002;
+            vel[i3 + 1] += (cy - pos[i3 + 1]) * 0.002;
+            vel[i3 + 2] += (cz - pos[i3 + 2]) * 0.002;
+          }
+
+          // --- 分离（Separation）---
+          for (var j = 0; j < n; j++) {
+            if (j === i) continue;
+            var j3 = j * 3;
+            var dx = pos[j3] - pos[i3];
+            var dy = pos[j3 + 1] - pos[i3 + 1];
+            var dz = pos[j3 + 2] - pos[i3 + 2];
+            var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (dist < SEPARATION_DIST && dist > 0.01) {
+              vel[i3]     -= (dx / dist) * 0.02;
+              vel[i3 + 1] -= (dy / dist) * 0.02;
+              vel[i3 + 2] -= (dz / dist) * 0.02;
+            }
+          }
+
+          // --- 对齐（Alignment）---
+          var ax = 0, ay = 0, az = 0, neighA = 0;
+          for (var j = 0; j < n; j++) {
+            if (j === i) continue;
+            var j3 = j * 3;
+            var dx = pos[j3] - pos[i3];
+            var dy = pos[j3 + 1] - pos[i3 + 1];
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < ALIGNMENT_DIST) { ax += vel[j3]; ay += vel[j3 + 1]; az += vel[j3 + 2]; neighA++; }
+          }
+          if (neighA > 0) {
+            vel[i3]     += (ax / neighA - vel[i3]) * 0.015;
+            vel[i3 + 1] += (ay / neighA - vel[i3 + 1]) * 0.015;
+          }
+
+          // --- 鼠标互动：粒子被吸引 ---
+          var mx = mouse.x * 50;
+          var my = mouse.y * 30;
+          var dx = mx - pos[i3];
+          var dy = my - pos[i3 + 1];
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MOUSE_RADIUS && dist > 0.01) {
+            vel[i3]     += (dx / dist) * MOUSE_FORCE;
+            vel[i3 + 1] += (dy / dist) * MOUSE_FORCE;
+          }
+
+          // --- 限速 ---
+          var speed = Math.sqrt(vel[i3] * vel[i3] + vel[i3 + 1] * vel[i3 + 1]);
+          if (speed > MAX_SPEED) {
+            vel[i3]     = (vel[i3] / speed) * MAX_SPEED;
+            vel[i3 + 1] = (vel[i3 + 1] / speed) * MAX_SPEED;
+          }
+
+          // --- 更新位置 ---
+          pos[i3]     += vel[i3];
+          pos[i3 + 1] += vel[i3 + 1];
+          pos[i3 + 2] += vel[i3 + 2];
+
+          // --- 边界回弹 ---
+          if (pos[i3] < -50 || pos[i3] > 50)     vel[i3]     *= -0.7;
+          if (pos[i3 + 1] < -30 || pos[i3 + 1] > 30) vel[i3 + 1] *= -0.7;
+          if (pos[i3 + 2] < -15 || pos[i3 + 2] > 15) vel[i3 + 2] *= -0.7;
+        }
+
+        geometry.attributes.position.needsUpdate = true;
+
+        // 蚂蚁不整体旋转，保持2D平面运动感
+        // particleMesh.rotation.y += 0.0006;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // ===== 窗口大小变化 =====
+      window.addEventListener('resize', function() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    // 等待所有 CDN 加载完成
+    window.addEventListener('load', function() {
+
+      // 检查 GSAP 是否加载成功
+      if (typeof gsap === 'undefined') {
+        console.error('GSAP 加载失败，显示静态内容');
+        document.body.classList.add('no-js');
+        return;
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Lenis 平滑滚动（如果加载成功）
+      var lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        });
+        lenis.on('scroll', function() { ScrollTrigger.update(); });
+        gsap.ticker.add(function(time) { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      /* ===== 1. Hero 入场动画 ===== */
+      var heroTL = gsap.timeline({ delay: 0.3 });
+      heroTL
+        .to('.hero__title', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
+        .to('.hero__subtitle', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+        .to('.hero__tags', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
+
+      /* ===== 2. 文本填充动画（clip-path）===== */
+      var animateTexts = document.querySelectorAll('.animate-text');
+      animateTexts.forEach(function(el) {
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            end: 'top 40%',
+            scrub: 0.6,
+          },
+          onUpdate: function(self) {
+            var p = self.progress;
+            el.style.setProperty(
+              '--fill',
+              'polygon(0 0, ' + (p * 100) + '% 0, ' + (p * 100) + '% 100%, 0 100%)'
+            );
+          },
+        });
+      });
+
+      // 注入 CSS 变量到 ::after
+      var styleTag = document.createElement('style');
+      styleTag.textContent = '.animate-text::after { clip-path: var(--fill, polygon(0 0, 0 0, 0 100%, 0 100%)); }';
+      document.head.appendChild(styleTag);
+
+      /* ===== 3. About 卡片 stagger 入场 ===== */
+      gsap.fromTo(
+        '.about-card',
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.about', start: 'top 70%' },
+        }
+      );
+
+      /* ===== 4. Service 标题流动 ===== */
+      gsap.to('.service__title--top', {
+        x: '0%', opacity: 1, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.service', start: 'top 75%', end: 'top 30%', scrub: 0.8 },
+      });
+      gsap.to('.service__title--middle', {
+        x: '0%', opacity: 1, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.service', start: 'top 65%', end: 'top 25%', scrub: 0.8 },
+      });
+      gsap.to('.service__title--bottom', {
+        x: '0%', opacity: 1, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.service', start: 'top 55%', end: 'top 20%', scrub: 0.8 },
+      });
+
+      /* ===== 5. 时间线节点点亮 ===== */
+      var nodeColors = ['#00D4AA', '#A277FF', '#FF6B6B', '#FFD93D'];
+      document.querySelectorAll('.timeline-node').forEach(function(node, i) {
+        ScrollTrigger.create({
+          trigger: node,
+          start: 'top 75%',
+          onEnter: function() {
+            gsap.to(node, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' });
+            var dot = node.querySelector('.node-dot');
+            dot.classList.add('active');
+            dot.style.boxShadow = '0 0 16px 2px ' + nodeColors[i] + '66';
+          },
+        });
+      });
+
+      /* ===== 6. 企业方案：生成网格 ===== */
+      var grid = document.getElementById('enterprise-grid');
+      if (grid) {
+        for (var i = 0; i < 32; i++) {
+          var cell = document.createElement('div');
+          cell.classList.add('grid-cell');
+          cell.dataset.index = i;
+          grid.appendChild(cell);
+        }
+      }
+
+      /* ===== 7. 企业方案光束扫描 ===== */
+      gsap.to('#enterprise-beam', {
+        x: '100vw',
+        duration: 2,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.enterprise',
+          start: 'top 70%',
+          end: 'bottom center',
+          scrub: 1,
+        },
+      });
+
+      // 光束扫过后的网格高亮
+      ScrollTrigger.create({
+        trigger: '.enterprise',
+        start: 'top 60%',
+        onEnter: function() {
+          document.querySelectorAll('.grid-cell').forEach(function(cell, i) {
+            setTimeout(function() { cell.classList.add('highlight'); }, i * 30);
+          });
+        },
+      });
+
+      /* ===== 8. FAQ 气泡入场 ===== */
+      gsap.fromTo(
+        '.faq-bubble',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.faq', start: 'top 75%' },
+        }
+      );
+
+      /* ===== 9. CTA 入场 ===== */
+      gsap.fromTo(
+        '.cta__title',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: '.cta', start: 'top 80%' },
+        }
+      );
+      gsap.fromTo(
+        '.cta__buttons',
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: '.cta', start: 'top 75%' },
+        }
+      );
+
+      /* ===== 10. Philosophy 区块：四个时期卡片 stagger 入场 ===== */
+      var eraCards = document.querySelectorAll('.era-card');
+      gsap.fromTo(
+        eraCards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.philosophy__eras', start: 'top 80%' },
+        }
+      );
+
+      /* ===== 11. Philosophy 区块：三个自由卡片入场 ===== */
+      var freedomItems = document.querySelectorAll('.freedom-item');
+      gsap.fromTo(
+        freedomItems,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.ultimate-freedoms', start: 'top 82%' },
+        }
+      );
+
+      /* ===== 12. Philosophy 区块：底部 CTA 入场 ===== */
+      gsap.fromTo(
+        '.philosophy__cta',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.philosophy__cta', start: 'top 88%' },
+        }
+      );
+
+      // 初始化色块漂移动画
+      initColorBlobs();
+
+      // 初始化 Hero 粒子系统（Three.js）
+      initParticleSystem();
+
+    }); // end window.load
+  </script>
+</body>
+</html>

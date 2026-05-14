@@ -1443,6 +1443,20 @@
         }
       );
 
+      // 按钮跳转：前往测评系统
+      var startBtn = document.getElementById('start-btn');
+      if (startBtn) {
+        startBtn.addEventListener('click', function() {
+          window.location.href = 'https://xuanju-cognitive-test.pages.dev';
+        });
+      }
+      var philosophyCta = document.getElementById('philosophy-cta');
+      if (philosophyCta) {
+        philosophyCta.addEventListener('click', function() {
+          window.location.href = 'https://xuanju-cognitive-test.pages.dev';
+        });
+      }
+
       // 初始化色块漂移动画
       initColorBlobs();
 

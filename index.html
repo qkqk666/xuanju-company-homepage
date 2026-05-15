@@ -475,12 +475,6 @@
       margin-bottom: 0.5rem;
     }
 
-    .freedom-item p {
-      font-size: 0.85rem;
-      opacity: 0.6;
-      line-height: 1.5;
-    }
-
     /* Philosophy CTA */
     .philosophy__cta {
       text-align: center;
@@ -739,7 +733,6 @@
       .philosophy__eras { grid-template-columns: 1fr 1fr; }
       .core-comparison { flex-direction: column; gap: 1.5rem; }
       .core-divider { width: 80px; height: 1px; }
-      .ultimate-freedoms { grid-template-columns: 1fr; }
       .cta__buttons { flex-direction: column; align-items: center; }
     }
 
@@ -1453,23 +1446,6 @@
           "生产力的高度发展，是人的自由全面发展的物质前提。"
           <cite>—— 马克思</cite>
         </blockquote>
-        <div class="ultimate-freedoms">
-          <div class="freedom-item">
-            <span class="freedom-icon">⏳</span>
-            <h4>时间的自由</h4>
-            <p>不再被重复性劳动消耗8小时，在创作、学习、生活中找到平衡</p>
-          </div>
-          <div class="freedom-item">
-            <span class="freedom-icon">🌐</span>
-            <h4>空间的自由</h4>
-            <p>不必挤在CBD的写字楼，在任何有网络的地方连接全球资源与机会</p>
-          </div>
-          <div class="freedom-item">
-            <span class="freedom-icon">🔄</span>
-            <h4>岗位的自由</h4>
-            <p>不再被"一个岗位定义一生"，根据兴趣与市场不断迭代能力与价值</p>
-          </div>
-        </div>
       </div>
 
       <!-- 底部行动号召 -->
@@ -1989,19 +1965,7 @@
         }
       );
 
-      /* ===== 11. Philosophy 区块：三个自由卡片入场 ===== */
-      var freedomItems = document.querySelectorAll('.freedom-item');
-      gsap.fromTo(
-        freedomItems,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.4,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: '.ultimate-freedoms', start: 'top 82%' },
-        }
-      );
+
 
       /* ===== 12. Philosophy 区块：底部 CTA 入场 ===== */
       gsap.fromTo(
@@ -2181,6 +2145,7 @@
   </script>
 </body>
 </html>
+
 
 
 

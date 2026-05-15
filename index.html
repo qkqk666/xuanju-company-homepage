@@ -971,6 +971,206 @@
         padding: 1.2rem 1.2rem;
       }
     }
+
+    /* ===== 超级个体计划 ===== */
+    .super-section {
+      width: 100vw;
+      padding: 7rem 2rem;
+      background: #08090C;
+      overflow-x: hidden;
+    }
+
+    .super-header {
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      perspective: 1000px;
+    }
+    .super-header:hover {
+      transform: scale(1.02);
+    }
+
+    .super-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .super-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 560px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .super-toggle {
+      display: inline-block;
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.45);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .super-toggle.is-open {
+      transform: rotate(180deg);
+    }
+
+    /* 内容折叠 */
+    .super-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.5s ease,
+                  margin-top 0.5s ease;
+    }
+    .super-content.is-open {
+      max-height: 5000px;
+      opacity: 1;
+      margin-top: 2.5rem;
+    }
+
+    .super-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* 超级卡片 */
+    .super-card {
+      padding: 1.4rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.025);
+      cursor: pointer;
+      transition: border-color 0.25s ease,
+                  background 0.25s ease,
+                  transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.5s ease;
+      opacity: 0;
+      transform: translateY(32px);
+      will-change: transform, opacity;
+    }
+    .super-card:hover {
+      border-color: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+    .super-card.card-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .super-card.card-floating {
+      transform: scale(1.025) translateZ(16px);
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.06),
+        0 4px 16px rgba(0,0,0,0.12),
+        0 20px 48px rgba(0,0,0,0.18);
+    }
+
+    .super-card__number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em;
+    }
+    .super-card__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0.3rem 0 0.45rem;
+    }
+    .super-card__preview {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.55;
+      transition: opacity 0.3s ease;
+    }
+    .super-card__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease,
+                  margin-top 0.3s ease;
+      opacity: 0;
+    }
+    .super-card--open .super-card__body {
+      max-height: 700px;
+      margin-top: 1.1rem;
+      opacity: 1;
+    }
+    .super-card__body p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      margin-bottom: 0.7rem;
+    }
+    .super-card__body p:last-child { margin-bottom: 0; }
+    .super-card__btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+      margin-top: 0.7rem;
+      cursor: pointer;
+      padding: 0;
+      letter-spacing: 0.03em;
+      transition: color 0.2s ease;
+      font-family: inherit;
+    }
+    .super-card__btn:hover { color: #00D4AA; }
+
+    .super-dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 0.4rem 0 1rem;
+    }
+    .super-line {
+      padding: 1.1rem 1.2rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .super-line h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .super-line p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin: 0 !important;
+    }
+    .super-line--op h4 { color: #00D4AA; }
+    .super-line--cg h4  { color: #A277FF; }
+
+    .super-closing {
+      text-align: center;
+      max-width: 760px;
+      margin: 3rem auto 0;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .super-closing blockquote {
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      margin: 0 0 2rem;
+      padding: 0;
+      border: none;
+    }
+
+    @media (max-width: 640px) {
+      .super-dual { grid-template-columns: 1fr; }
+      .super-section { padding: 5rem 1.2rem; }
+      .super-card { padding: 1.2rem 1.2rem; }
+    }
   </style>
 
   <!-- Three.js：粒子系统依赖 -->
@@ -1278,6 +1478,73 @@
         <button class="cta-primary" id="philosophy-cta">开启你的天赋匹配之旅</button>
       </div>
 
+    </div>
+  </section>
+
+  <!-- 超级个体计划 -->
+  <section class="super-section">
+    <div class="super-header" id="superHeader">
+      <h2 class="super-title animate-text" data-text="超级个体计划">超级个体计划</h2>
+      <p class="super-subtitle">不是学AI，是用AI长出自己的能力地图。点击展开，发现你的认知升级路径。</p>
+      <span class="super-toggle" id="superToggle">▼</span>
+    </div>
+
+    <div class="super-content" id="superContent">
+      <div class="super-cards">
+
+        <!-- 卡片1：为什么是「超级个体」 -->
+        <div class="super-card">
+          <span class="super-card__number">01</span>
+          <h3 class="super-card__title">为什么是「超级个体」</h3>
+          <p class="super-card__preview">AI不会取代你，但会用AI的人会取代你——不是因为工具本身，而是因为认知差距。</p>
+          <div class="super-card__body">
+            <p>未来的核心竞争力，不是你知道多少，而是你能不能在最短时间内判断：这个AI工具值得花多少时间掌握？它解决的是真问题还是伪需求？</p>
+            <p>超级个体不是天才，是那些最早把AI嵌入工作流、最早用AI验证自己想法的人。他们用AI放大自己的判断力，而不是用AI替代自己的思考。</p>
+            <p>在惠州，我们正在把这种认知方式，变成一种可习得的能力。</p>
+          </div>
+          <button class="super-card__btn">展开 ↓</button>
+        </div>
+
+        <!-- 卡片2：两条线的具体路径 -->
+        <div class="super-card super-card--open">
+          <span class="super-card__number">02</span>
+          <h3 class="super-card__title">两条线，帮你找到自己的入口</h3>
+          <p class="super-card__preview">操作线解决「怎么用」，认知线解决「往哪走」。两条线一起，才不会迷失。</p>
+          <div class="super-card__body">
+            <div class="super-dual">
+              <div class="super-line super-line--op">
+                <h4>操作线</h4>
+                <p>从你的真实任务出发：用AI写方案、用AI分析数据、用AI做竞品调研。每一个任务都是一次能力沉淀。</p>
+              </div>
+              <div class="super-line super-line--cg">
+                <h4>认知线</h4>
+                <p>理解AI的能力边界和进化方向，学会判断：什么会被AI替代，什么是AI永远无法替代的人类优势。</p>
+              </div>
+            </div>
+            <p>两条线在真实任务中交叉，才会长出真正属于你的「AI工作流」。</p>
+          </div>
+          <button class="super-card__btn">收起 ↑</button>
+        </div>
+
+        <!-- 卡片3：玄驹的角色 -->
+        <div class="super-card">
+          <span class="super-card__number">03</span>
+          <h3 class="super-card__title">玄驹在「超级个体计划」中的角色</h3>
+          <p class="super-card__preview">我们不是给你喂知识的老师傅，而是陪你打磨认知镜像的同行者。</p>
+          <div class="super-card__body">
+            <p>每一次测评，不只是给你一个分数，而是帮你看清楚：你的判断模式里，哪些是真正高效的，哪些是正在拖累你的认知习惯。</p>
+            <p>每一次复盘，不只是总结你做了什么，而是帮你发现：你做的选择背后，藏着怎样的思维框架？那个框架，是可以优化的。</p>
+            <p>玄驹信息，把「认知升级」从一句口号，变成一次次可测量、可迭代的真实训练。</p>
+          </div>
+          <button class="super-card__btn">展开 ↓</button>
+        </div>
+
+      </div>
+
+      <div class="super-closing" id="superClosing">
+        <blockquote>「个体崛起的时代，不是机会变多了，是判断力变稀缺了。」</blockquote>
+        <button class="cta-secondary" onclick="document.querySelector('.cta').scrollIntoView({behavior:'smooth'})">开始认知测评，找到你的入口</button>
+      </div>
     </div>
   </section>
 
@@ -1833,10 +2100,88 @@
         });
       });
 
+      /* ===== 超级个体计划：模块折叠 + 卡片 GSAP 动画 ===== */
+      var superHeader  = document.getElementById('superHeader');
+      var superContent = document.getElementById('superContent');
+      var superToggle  = document.getElementById('superToggle');
+      var superCards   = document.querySelectorAll('.super-card');
+      var superClosing = document.getElementById('superClosing');
+      var superCardBtns = document.querySelectorAll('.super-card__btn');
+      var superExpanding = false;
+
+      /* 内部卡片展开/收起 */
+      superCardBtns.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var card = btn.closest('.super-card');
+          var body = card.querySelector('.super-card__body');
+          var isOpen = card.classList.contains('super-card--open');
+
+          if (isOpen) {
+            gsap.to(body, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.in',
+              onComplete: function() { card.classList.remove('super-card--open', 'card-floating'); } });
+            btn.textContent = '展开 ↓';
+          } else {
+            card.classList.add('super-card--open', 'card-floating');
+            gsap.fromTo(body, { height: 0, opacity: 0 },
+              { height: 'auto', opacity: 1, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
+            btn.textContent = '收起 ↑';
+          }
+        });
+      });
+
+      /* 模块折叠/展开 */
+      if (superHeader && superContent && superToggle) {
+        superHeader.addEventListener('click', function() {
+          if (superExpanding) return;
+          superExpanding = true;
+
+          var isOpen = superContent.classList.contains('is-open');
+          var tl = gsap.timeline({
+            onComplete: function() { superExpanding = false; }
+          });
+
+          if (isOpen) {
+            /* 收起 */
+            tl.to(superToggle, { rotate: 0, duration: 0.3, ease: 'power2.inOut' })
+              .to(superCards, { y: -20, opacity: 0, duration: 0.2, ease: 'power2.in', stagger: 0.04 }, 0)
+              .to(superClosing, { opacity: 0, y: -10, duration: 0.2, ease: 'power2.in' }, 0)
+              .to(superContent, { height: 0, opacity: 0, duration: 0.5, ease: 'power2.in' }, 0.1);
+            superContent.classList.remove('is-open');
+            superToggle.classList.remove('is-open');
+            superCards.forEach(function(c) { c.classList.remove('card-revealed'); });
+          } else {
+            /* 展开 */
+            tl.to(superToggle, { rotate: 180, duration: 0.35, ease: 'power2.inOut' })
+              .to(superContent, { height: 'auto', opacity: 1, duration: 0.65, ease: 'power2.out' }, 0.1)
+              .to(superCards, { opacity: 1, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.4)', stagger: 0.1 }, 0.35)
+              .to(superClosing, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.5);
+            superContent.classList.add('is-open');
+            superToggle.classList.add('is-open');
+            superCards.forEach(function(c) { c.classList.add('card-revealed'); });
+          }
+        });
+      }
+
+      /* Intersection Observer：卡片滚动入场 */
+      if ('IntersectionObserver' in window) {
+        var superObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('card-revealed');
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        superCards.forEach(function(card) { superObs.observe(card); });
+        if (superClosing) superObs.observe(superClosing);
+      }
+
     }); // end window.load
   </script>
 </body>
 </html>
+
 
 
 

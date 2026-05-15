@@ -792,6 +792,185 @@
       position: relative;
       z-index: 2;
     }
+
+    /* ===== 玄驹观点 ===== */
+    .insight {
+      width: 100vw;
+      min-height: 80vh;
+      padding: 7rem 2rem;
+      background: #08090C;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .insight__content {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .insight__title {
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .insight__subtitle {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      margin-bottom: 3.5rem;
+      line-height: 1.6;
+    }
+
+    .insight__cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .insight-card {
+      padding: 1.4rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.025);
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .insight-card:hover {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .insight-card__number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em;
+    }
+
+    .insight-card__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0.3rem 0 0.5rem;
+    }
+
+    .insight-card__preview {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.55;
+      transition: opacity 0.3s ease;
+    }
+
+    .insight-card__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease,
+                  margin-top 0.3s ease;
+      opacity: 0;
+    }
+
+    .insight-card--open .insight-card__body {
+      max-height: 700px;
+      margin-top: 1.1rem;
+      opacity: 1;
+    }
+
+    .insight-card__body p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      margin-bottom: 0.7rem;
+    }
+
+    .insight-card__body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .insight-card__btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+      margin-top: 0.7rem;
+      cursor: pointer;
+      padding: 0;
+      letter-spacing: 0.03em;
+      transition: color 0.2s ease;
+      font-family: inherit;
+    }
+
+    .insight-card__btn:hover {
+      color: #00D4AA;
+    }
+
+    /* 双线结构 */
+    .dual-lines {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 0.4rem 0 1.2rem;
+    }
+
+    .line-item {
+      padding: 1.1rem 1.2rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .line-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .line-item p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin: 0 !important;
+    }
+
+    .line-operation h4 { color: #00D4AA; }
+    .line-cognition h4  { color: #A277FF; }
+
+    /* 底部结语 */
+    .insight__closing {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .insight__closing blockquote {
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      margin: 0 0 2rem;
+      padding: 0;
+      border: none;
+    }
+
+    @media (max-width: 640px) {
+      .dual-lines {
+        grid-template-columns: 1fr;
+      }
+      .insight {
+        padding: 5rem 1.2rem;
+      }
+      .insight-card {
+        padding: 1.2rem 1.2rem;
+      }
+    }
   </style>
 
   <!-- Three.js：粒子系统依赖 -->
@@ -1031,6 +1210,72 @@
       <div class="philosophy__cta">
         <p class="cta-text">你不必是技术专家，只要你愿意拥抱AI工具，就能成为这场生产力解放运动的参与者。</p>
         <button class="cta-primary" id="philosophy-cta">开启你的天赋匹配之旅</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 玄驹观点 -->
+  <section class="insight">
+    <div class="insight__content">
+
+      <h2 class="insight__title animate-text" data-text="你不会用AI，不是因为笨">你不会用AI，不是因为笨</h2>
+      <p class="insight__subtitle">是因为你还在用上个时代的方法，学习这个时代的东西。这才是问题的根。</p>
+
+      <div class="insight__cards">
+
+        <!-- 卡片1：破 —— 放弃"完整掌握" -->
+        <div class="insight-card glass-card">
+          <span class="insight-card__number">01</span>
+          <h3 class="insight-card__title">放弃"完整掌握"的执念</h3>
+          <p class="insight-card__preview">在一个高速变化的系统里，百分之百学会每个新东西，不现实，也没必要。</p>
+          <div class="insight-card__body">
+            <p>过去的知识是稳定的：教材稳定、老师稳定、知识边界也稳定。但AI一直在变。今天你拼命学透的东西，可能下周就被新能力覆盖。</p>
+            <p>真正值钱的，不是你学会了多少个工具的操作，而是你能不能快速判断：这项技术到底解决什么问题？值不值得你投入？是短期噪音还是中长期能力？</p>
+            <p>AI时代拼的不是记忆力，拼的是判断力，拼的是快速落地能力。</p>
+          </div>
+          <button class="insight-card__btn">展开 ↓</button>
+        </div>
+
+        <!-- 卡片2：立 —— 从"围观"到"共处" -->
+        <div class="insight-card glass-card">
+          <span class="insight-card__number">02</span>
+          <h3 class="insight-card__title">从"围观AI"到"与AI共处"</h3>
+          <p class="insight-card__preview">你以为自己在靠近AI，其实你只是在围观AI。</p>
+          <div class="insight-card__body">
+            <p>很多人的焦虑，不是因为AI太强，而是因为他始终停留在"学习的气氛里"，从来没有真正进入学习本身。焦虑，却不真正学习。</p>
+            <p>真正的学习，一定会留下结构：会留下自己的理解，会留下能被复用的经验，会留下下一次还能拿出来用的判断。</p>
+            <p>如果你看了那么多内容，最后脑子里还是一团雾，那就说明你吸收的不是知识，是热闹。热闹没有用。</p>
+          </div>
+          <button class="insight-card__btn">展开 ↓</button>
+        </div>
+
+        <!-- 卡片3：方法论 —— 双线结构（默认展开） -->
+        <div class="insight-card glass-card insight-card--open">
+          <span class="insight-card__number">03</span>
+          <h3 class="insight-card__title">两条线，长出自己的AI系统</h3>
+          <p class="insight-card__preview">操作线教你上手，认知线教你判断。两条线一起走，才会长出自己的动态系统。</p>
+          <div class="insight-card__body">
+            <div class="dual-lines">
+              <div class="line-item line-operation">
+                <h4>操作线</h4>
+                <p>如何上手用AI、如何用AI做任务、如何把零散的认知整理成自己的知识库。</p>
+              </div>
+              <div class="line-item line-cognition">
+                <h4>认知线</h4>
+                <p>如何筛选前沿信息、如何判断行业趋势、如何校准自己的方向感。</p>
+              </div>
+            </div>
+            <p>玄驹信息不教你死记硬背过时的操作步骤。我们帮你建立底层的AI思维，打通操作线和认知线，用真实的工作任务做锚点，把零散的认知长成属于自己的能力地图。</p>
+          </div>
+          <button class="insight-card__btn">收起 ↑</button>
+        </div>
+
+      </div>
+
+      <div class="insight__closing">
+        <blockquote>"下个时代，属于AI原生人群。而AI原生，不是年龄。是思维。"</blockquote>
+        <button class="cta-secondary" onclick="document.querySelector('.cta').scrollIntoView({behavior:'smooth'})">开始你的AI思维升级</button>
       </div>
 
     </div>
@@ -1536,8 +1781,61 @@
       // 初始化 Hero 粒子系统（Three.js）
       initParticleSystem();
 
+      /* ===== 玄驹观点：卡片入场动画 ===== */
+      gsap.utils.toArray('.insight-card').forEach(function(card, i) {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          delay: i * 0.08,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        });
+      });
+
+      /* ===== 玄驹观点：底部结语入场 ===== */
+      var insightClosing = document.querySelector('.insight__closing');
+      if (insightClosing) {
+        gsap.to(insightClosing, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: insightClosing,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+
+      /* ===== 玄驹观点：卡片展开/收起 ===== */
+      document.querySelectorAll('.insight-card').forEach(function(card) {
+        var btn = card.querySelector('.insight-card__btn');
+        var preview = card.querySelector('.insight-card__preview');
+        if (!btn || !preview) return;
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = card.classList.contains('insight-card--open');
+          if (isOpen) {
+            card.classList.remove('insight-card--open');
+            btn.textContent = '展开 ↓';
+            preview.style.opacity = '';
+          } else {
+            card.classList.add('insight-card--open');
+            btn.textContent = '收起 ↑';
+            preview.style.opacity = '0.22';
+          }
+        });
+      });
+
     }); // end window.load
   </script>
 </body>
 </html>
+
 
